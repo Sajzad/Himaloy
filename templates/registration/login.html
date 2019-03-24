@@ -1,0 +1,44 @@
+{%extends 'base/base.html'%}
+{%block content%}
+<div class="container">
+
+
+{%if form.errors%}
+
+    <p class='pt-3'> User or Password Incorrect. please try again</p>
+{%endif%}
+
+
+<div class="row">
+	<aside class="col-lg-4 ">
+    <div class="card">
+      <article class="card-body">
+        <a href="{% url 'signup'%}" class="float-right btn btn-outline-primary">Sign up</a>
+        <h4 class="card-title mb-4 mt-1">Sign in</h4>
+	       <form method='post' action="{%url 'login'%}">
+           {%csrf_token%}
+           <div class="form-group" form_id='login_form'>
+    	       <label>Your Username</label>
+             <input id="id_username" name="username" class="form-control" placeholder="username" type="username" value="">
+            </div> <!-- form-group// -->
+              <div class="form-group">
+                <a class="float-right" href="{% url 'password_reset'%}">Forgot?</a>
+    	           <label>Your password</label>
+                 <input name="password" id="id_password" class="form-control" placeholder="******" type="password" value="">
+               </div> <!-- form-group// -->
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <label> <input type="checkbox"> Save password </label>
+                    </div> <!-- checkbox .// -->
+                  </div> <!-- form-group// -->
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+                  </div> <!-- form-group// -->
+                </form>
+              </article>
+            </div> <!-- card.// -->
+          </div>
+        </aside>
+      </div>
+
+{%endblock%}

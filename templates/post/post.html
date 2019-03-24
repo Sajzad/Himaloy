@@ -1,0 +1,93 @@
+{%extends 'base/base.html'%}
+{%load static%}
+
+{% block content%}
+
+  <div class="container">
+      <div class="row">
+        <!-- Latest Posts -->
+        <main class="post blog-post col-lg-8">
+          <div class="container">
+            <div class="post-single">
+              <!-- <div class="post-thumbnail"><img src="img/blog-post-3.jpeg" alt="..." class="img-fluid"></div> -->
+              <div class="post-details">
+                <div class="post-meta d-flex justify-content-between">
+                  <div class="category">
+                    <a href="#"></a>
+                  </div>
+                </div>
+                <h1>Tutorials <a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+                <div>
+                {% for obj in django_post_list%}
+                <div class="container">
+                  <p>{{obj.title}}</p>
+
+                </div>
+                {% endfor %}
+
+                </div>
+
+                <div class="post-tags list-inline">
+                  {% for obj in tags %}
+                  <a href="{{get_absolute_url}}" class="tag">#{{obj.tags}} </a>
+                  {% endfor %}
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </main>
+        <aside class="col-lg-4">
+          <!-- Widget [Search Bar Widget]-->
+          <div class="widget search">
+            <header>
+              <h3 class="h6">Search the blog</h3>
+            </header>
+            <form action="#" class="search-form">
+              <div class="form-group">
+                <input type="search" placeholder="What are you looking for?">
+                <button type="submit" class="submit"><i class="icon-search"></i></button>
+              </div>
+            </form>
+          </div>
+          <!-- Widget [Latest Posts Widget]
+              -->
+          <div class="widget latest-posts">
+
+            <header>
+              <h3 class="h6">Latest Posts</h3>
+            </header>
+
+            <div class="blog-posts">
+              {% for obj in latest_post%}
+              <a href="#">
+                <div class="item d-flex align-items-center">
+                  <div class="image"><img src="img/small-thumbnail-1.jpg" alt="..." class="img-fluid"></div>
+                  <div class="title"><strong> {{obj.title}} </strong>
+                    <div class="d-flex align-items-center">
+                      <div class="views"><i class="icon-eye"></i> 500</div>
+                      <div class="comments"><i class="icon-comment"></i>12</div>
+                    </div>
+                  </div>
+
+                </div></a>
+                {% endfor %}
+                </div>
+          </div>
+          <!-- Widget [Categories Widget]-->
+          <div class="widget categories">
+            <header>
+              <h3 class="h6">Categories</h3>
+            </header>
+            {% for cat in category_count %}
+            <div class="item d-flex justify-content-between"><a href="#">{{cat.categories__title}}</a><span>{{cat.categories__title__count}}</span></div>
+
+            {% endfor %}
+          </div>
+
+        </aside>
+      </div>
+    </div>
+
+    {% endblock%}
+    <!-- Page Footer-->

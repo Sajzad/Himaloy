@@ -1,0 +1,95 @@
+{% extends 'base/base.html'%}
+{%load static%}
+
+
+{%block content%}
+
+
+    <!-- Intro Section-->
+    <section class="intro">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <h2 class="h3">Some great intro here</h2>
+            <p class="text-big">Place a nice <strong>introduction</strong> here <strong>to catch reader's attention</strong>. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="featured-posts no-padding-top ">
+      <div class="container">
+
+        <!-- Course Overview -->
+
+        {%for obj in object_list%}
+        <div class="row d-flex align-items-stretch">
+          <div class="text col-lg-6 centre">
+            <div class="text-inner d-flex align-items-center p-0 ">
+              <div class="content">
+                <header class="post-header">
+                  <div class="category"><a href="#">{{obj.categories}}</a></div>
+                  <!-- <a href="post.html"> -->
+                    <!-- <h2 class="h4">{{obj.title}}</h2></a> -->
+                </header>
+                <p>{{obj.overview}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor%}
+      </div>
+    </section>
+    <!-- Latest Posts -->
+    <section class="latest-posts">
+      <div class="container">
+        <header class="">
+          <h2 class="pt-4">Latest from the blog</h2>
+          <p class="text-big">Read Latest Posts</p>
+        </header>
+        <div class="row">
+          {%for obj in latest_post%}
+          <div class="post col-md-4">
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+
+              </div><a href="post.html">
+                <div class="category"><a href="#">{{obj.categories}}</a>
+              </div>
+                <h3 class="h4">{{obj.title}}</h3></a>
+              <p class="text-muted">{{obj.overview|linebreaks|truncatechars:200}}</p>
+
+            </div>
+            <div class="date"><p><i class="icon-clock"></i>{{obj.timestamp|timesince}} ago</p></div>
+
+          </div>
+          {%endfor%}
+        </div>
+
+      </div>
+    </section>
+    <!-- Newsletter Section-->
+    <section class="newsletter no-padding-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Subscribe to Newsletter</h2>
+            <p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+          <div class="col-md-8">
+            <div class="form-holder">
+              <form method="POST" action=".">
+                {% csrf_token %}
+                <div class="form-group">
+                  <input type="email" name="email" id="email" placeholder="Type your email address">
+                  <button type="submit" class="submit">Subscribe</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    {%endblock content%}
+    <!-- Page Footer-->
